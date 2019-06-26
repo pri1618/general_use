@@ -1,0 +1,73 @@
+Input for Glyph Choice.
+User Glyph and Computer Glyph defined.(symbol_u and symbol_c)
+
+avalM dictionary defined with available moves mapped to position specific numbers. (linked to glyph positioning on board)
+
+Empty board printed.
+
+def check(symbol):
+	-takes in one argument: symbol
+	-returns a boolean.
+	-checks whether the symbol has three in a row column or diagonal.
+
+def play(symbol, move_p):
+	-takes in two arguments: symbol and move played
+	-returns the updated board.
+	-replaces the appropriate space on the board with the symbol.
+
+def brain():
+	-takes in 0 arguments.
+	-decides the move which the computer plays.
+	-for its first move, if player has not played b2 it picks b2. else some random square.
+	-checks if it can win the game. if yes, it moves accordingly. if not, it checks is player can win the game in the next move and appropriately
+	 blocks it.
+	-scoring is given precedence to blocking.
+
+def short(row, symbol):
+	-takes in two arguments: row and symbol
+	-returns the move required to either win or block a win in that row.
+
+def short_1(col, symbol):
+	-takes in two arguments: col and symbol
+	-returns the move required to either win or block a win in that col.
+
+//short() and short_1() defined for making brain() cleaner and easier to read.
+
+while True: (Game Loop)
+	User Plays:
+	Input Loop. (until valid input is received)
+	Input taken in 'move'
+	
+	play(symbol_u, move)
+	Board is printed in updated state.
+
+	move_log = {move: symbol_u}
+	move_log is updated to the move history dictionary.
+
+	if check(symbol_u) == True:
+		break and send win message.
+
+	played move is removed from available moves.
+
+	If avalM is empty:
+		break and send draw message.
+
+	Computer Plays:
+	y = brain()
+	
+	play(symbol_c, y)
+	Board is printed in updated state.
+
+	move_log = {move: symbol_c}
+	move_log is updated to the move history dictionary.
+
+	if check(symbol_c) == True:
+		break and send lose message.
+
+	played move is removed from avalM
+
+//play sequence of user and computer grouped as fuctions for easier accessibility and portability.
+
+	
+		
+	
