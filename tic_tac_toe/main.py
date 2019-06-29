@@ -12,7 +12,20 @@ while True:
     compSym = 'o'
     break
   else:
-    print('Invalid Input.')   
+    print('Invalid Input.')
+
+print('\n')
+
+while True:
+  order_p = str(raw_input('r - random. u - user plays first. c - computer plays first.\nYour Input: '))
+  if order_p == 'r':
+    orders = ['u', 'c']
+    order_p = random.choice(orders)
+    break
+  elif order_p == 'u' or order_p == 'c':
+    break
+  else: 
+    print('Invalid Input.')          
 
 map = '___|___|___\n___|___|___\n   |   |   '
 map_l = list(map)
@@ -228,24 +241,42 @@ def bigu_play():
     
   avalM.pop(move)
 
+x = ''
 
 while True:
-  bigc_play()
-  counter += 1
+  if order_p == 'c':
+    bigc_play()
+    counter += 1
 
-  if check(compSym) == True:
-    x = 'c_win'
-    break
+    if check(compSym) == True:
+      x = 'c_win'
+      break
 
-  if counter == 9: break
-  
-  bigu_play()
-  counter += 1
+    if counter == 9: break
+    
+    bigu_play()
+    counter += 1
 
-  if check(sym) == True:
-    x = 'u_win'
-    break
+    if check(sym) == True:
+      x = 'u_win'
+      break
 
+  else:
+    bigu_play()
+    counter += 1
+
+    if check(sym) == True:
+      x = 'u_win'
+      break
+
+    if counter == 9: break 
+
+    bigc_play()
+    counter += 1
+
+    if check(compSym) == True:
+      x = 'c_win'
+      break
 
 if x == 'u_win':
   print('You Won!')
