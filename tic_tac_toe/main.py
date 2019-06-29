@@ -4,7 +4,7 @@ avalM = {'a1': '1', 'a2': '2', 'a3': '3', 'b1': '4', 'b2': '5', 'b3': '6', 'c1':
 moved = {}
 
 while True:
-  sym = str(input('Glyph of choice(o/x): '))
+  sym = str(raw_input('Glyph of choice(o/x): '))
   if sym == 'o':
     compSym = 'x'
     break
@@ -89,12 +89,12 @@ def brain():
   ly5 = []
   ly6 = []
   lt = ['a1', 'c3', 'a3', 'c1'] #Case II
+  ls = ['a2', 'c2', 'b1', 'b3']
   for i in list(moved.keys()):
     if moved[i] == sym:
       l5.append(i[0])
       l6.append(i[1])
       l0.append(i)
-      print(l0)
     else:
       ly.append(i)
       ly5.append(i[0])
@@ -125,13 +125,13 @@ def brain():
     return short_1('3', compSym)
         
   elif 'b2' in ly and (('a1' in ly and 'c3' in avalM) or ('a3' in ly and 'c1' in avalM) or ('c1' in ly and 'a3' in avalM) or ('c3' in ly and 'a1' in avalM)):
-    if 'a1' in ly:
+    if 'a1' in ly and 'c3' in avalM:
       return 'c3'
-    elif 'a3' in ly:
+    elif 'a3' in ly and 'c1' in avalM:
       return 'c1'
-    elif 'c3' in ly:
+    elif 'c3' in ly and 'a1' in avalM:
       return 'a1'
-    elif 'c1' in ly:
+    elif 'c1' in ly and 'a3' in avalM:
       return 'a3'
 
   elif (('a1' in l0 and 'c3' in l0) or ('a3' in l0 and 'c1' in l0)) and 'b2' in avalM:
@@ -214,7 +214,7 @@ def bigc_play():
 
 def bigu_play():
   while True:
-    move = str(input('Your Move: '))
+    move = str(raw_input('Your Move: '))
     if move not in avalM:
       print('Invalid Input/Square Taken')
     else:
