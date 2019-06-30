@@ -101,7 +101,7 @@ def brain():
   ly = []
   ly5 = []
   ly6 = []
-  lt = ['a1', 'c3', 'a3', 'c1'] #Case II
+  lt = ['a1', 'c3', 'a3', 'c1'] 
   ls = ['a2', 'c2', 'b1', 'b3']
   for i in list(moved.keys()):
     if moved[i] == sym:
@@ -150,7 +150,7 @@ def brain():
   elif (('a1' in l0 and 'c3' in l0) or ('a3' in l0 and 'c1' in l0)) and 'b2' in avalM:
     return 'b2'
 
-  elif counter == 2:    #Case II
+  elif counter == 2:   
     if l0[0] in lt:
       for i in range(len(lt)):
         if lt[i] == l0[0]:
@@ -195,7 +195,7 @@ def brain():
     elif (('a1' in l0 and 'c3' in l0) or ('a3' in l0 and 'c1' in l0)) and 'b2' in list(avalM.keys()):
       return 'b2'
     
-    elif counter == 4:  #Case II #Score
+    elif counter == 4:  
       for i in lt:
         if i in avalM and (l5.count(i[0]) == 0 or l6.count(i[1]) == 0):
           return i
@@ -214,38 +214,31 @@ def play(symbol, move_p):
   return map_l
 
 
-def bigc_play():
-  y = brain()
-  board = play(compSym, y)
-  print('Computer\'s Move: ' + y)
-  print(''.join(board) + '\n')
+def big_play(player):
+  if player == 'c':
+    move = brain()
+    symbol_i = compSym
+  else:
+    while True:
+      move = str(raw_input('Your Move: '))
+      if move not in avalM:
+        print('Invalid Input/Square Taken')
+      else:
+        break
+    symbol_i = sym
   
-  move_log = {y: compSym} 
-  moved.update(move_log)
-  avalM.pop(y)
-
-
-def bigu_play():
-  while True:
-    move = str(raw_input('Your Move: '))
-    if move not in avalM:
-      print('Invalid Input/Square Taken')
-    else:
-      break
-
-  board = play(sym, move)
-  print(''.join(board) + '\n')
+  board = play(symbol_i, move)
+  print(''.join(board) + '\n') 
   
-  move_log = {move: sym} 
-  moved.update(move_log)
-    
+  move_log = {move: symbol_i} 
+  moved.update(move_log) 
   avalM.pop(move)
-
+    
 x = ''
 
 while True:
   if order_p == 'c':
-    bigc_play()
+    big_play('c')
     counter += 1
 
     if check(compSym) == True:
@@ -254,7 +247,7 @@ while True:
 
     if counter == 9: break
     
-    bigu_play()
+    big_play('u')
     counter += 1
 
     if check(sym) == True:
@@ -262,7 +255,7 @@ while True:
       break
 
   else:
-    bigu_play()
+    big_play('u')
     counter += 1
 
     if check(sym) == True:
@@ -271,7 +264,7 @@ while True:
 
     if counter == 9: break 
 
-    bigc_play()
+    big_play('c')
     counter += 1
 
     if check(compSym) == True:
