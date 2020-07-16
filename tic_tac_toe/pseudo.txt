@@ -1,0 +1,75 @@
+// Pseudo Code
+
+Input for Glyph Choice.
+User Glyph and Computer Glyph defined.(symbol_u and symbol_c)
+
+Order of play taken as input from user. Can be user first or computer first or random. 
+avalM dictionary defined with available moves mapped to position specific numbers. (linked to glyph positioning on board)
+
+Empty board printed.
+
+def check(symbol):
+	-takes in one argument: symbol
+	-returns a boolean.
+	-checks whether the symbol has three in a row column or diagonal.
+
+def play(symbol, move_p):
+	-takes in two arguments: symbol and move played
+	-returns the updated board.
+	-replaces the appropriate space on the board with the symbol.
+
+def brain():
+	-takes in 0 arguments.
+	-decides the move which the computer plays.
+	-for its first move, if player has not played b2 it picks b2. else some random square.
+	-checks if it can win the game. if yes, it moves accordingly. if not, it checks is player can win the game in the next move and appropriately
+	 blocks it.
+	-scoring is given precedence to blocking.
+
+def short(row, symbol):
+	-takes in two arguments: row and symbol
+	-returns the move required to either win or block a win in that row.
+
+def short_1(col, symbol):
+	-takes in two arguments: col and symbol
+	-returns the move required to either win or block a win in that col.
+
+//short() and short_1() defined for making brain() cleaner and easier to read.
+
+def big_play(player):
+	-takes in one argument: player(either 'c' for computer or 'u' for user)
+	-plays the move, prints the updated board and updates the move log an dictionary of available moves.
+	-shortens the game loop and makes it easier to read. 
+
+while True: (Game Loop)
+	if player plays first:
+		big_play('u')
+		Update counter
+		
+		if check(symbol_u) is True:
+			break and send win message
+
+		if counter is 9:
+			break and send draw message
+
+		big_play('c')
+		Update counter
+
+		if check(symbol_c) is True:
+			break and send lose message
+	
+	if computer plays first:
+		big_play('c')
+		Update counter
+		
+		if check(symbol_c) is True:
+			break and send lose message
+
+		if counter is 9:
+			break and send draw message
+
+		big_play('u')
+		Update counter
+
+		if check(symbol_u) is True:
+			break and send win message
