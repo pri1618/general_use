@@ -1,3 +1,7 @@
+Tic Tac Toe. Player vs Machine. 
+
+// Pseudo Code
+
 Input for Glyph Choice.
 User Glyph and Computer Glyph defined.(symbol_u and symbol_c)
 
